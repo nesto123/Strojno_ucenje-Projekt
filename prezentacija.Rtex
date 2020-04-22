@@ -135,7 +135,6 @@ keywordstyle=\color{myblue}\bfseries,
             \item Naivnog Bayesa
         \end{itemize}
     \item Razmišljamo i o dodatnim metodama koje ćemo koristiti po potrebi.
-    \item Neuralna mreža bi mogla funkcionirati na ovom skupu podataka  no njena upotreba zahtjeva preveliko odbacivanje značajki te bi naš model postao neprecizan.
     \item Planiramo evaluirati naš model na nekoliko načina, npr. pomoću roc auc metrike.
 \end{itemize}
 
