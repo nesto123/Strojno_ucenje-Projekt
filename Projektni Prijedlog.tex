@@ -31,15 +31,18 @@
 \section{Uvodni opis problema}
 U ovom projektu bavit ćemo se problemom predviđanja zadovoljstva putnika neke avionske kompanije. Radi se o binarnom klasifikacijskom problemu u kojem traženo zadovoljstvo može biti jedno od: neutral or dissatisfied (neutralni ili nezadovoljni) ili satisfied (zadovoljni). Koristit ćemo skup podataka pronađen na kaggleu (\href{https://www.kaggle.com/teejmahal20/airline-passenger-satisfaction}{Airline Passenger Satisfaction}) koji sadrži oko 130 000 redova podataka raspoređenih na 25 značajki. Dataset sadrži i kategorične i kontinuirane značajke pa smo kategorične encodali na različite načine onako kako se činilo ispravno te proveli čišćenje podataka od nedostajućih vrijednosti i previše koreliranih značajki kao i nekoliko metoda za odlučivanje o odbacvianju značajki.
 
+\newline
 \section{Cilj i hipoteze istraživanja problema}
 Cilj je ispitati nekoliko standardnih metoda strojnog učenja na ovom skupu podataka te konstruirati najbolji mogući model za klasifikaciju zadovoljstva danog putnika.
-
+\newline
 \section{Pregled dosadašnjih istraživanja}
 Budući da se radi o relativno novom skupu podataka, imamo tek nekoliko dosadašnjih istraživanja koja možemo analizirati. Koristili su se razni klasifikatori kako bi se stvorio željeni model poput: Random Foresta, LightGBM, Catboost, XGBoost, linearne regresija i tako dalje. Držimo da sva ova istraživanja problema dosad nisu provela adekvatnu analizu značajki, kao ni njihovo odbacivanje te se na tom području nadamo znatno poboljšati naše modele. Općenito se binarno klasificiranje zna rješavati i kompliciranijim metodama poput neuronskih mreža ili strojem s potpornim vektorima, ali ovakve metode znaju zahtjevati jake računalne resurse.
 
+\newpage
 \section{Materijali, metodologija i plan istraživanja}
 Pokušat ćemo konstruirati najbolji mogući model za dan skup podataka koristeći metode nadziranog učenja. Planiramo koristiti barem tri metode za binarnu klasifikaciju, to jest: Random Forest, linearnu regresiju i naivnog Bayesa, ali razmišljamo i o drugim mogućim metodama za postizanje rezultata. Naravno, ovo ćemo provesti u Pythonu. Svjesni smo da bi neuralna mreža mogla dobro funkcionirati na ovom skupu podataka, ali postoji mogućnost da će njena upotreba zahtjevati preveliko odbacivanje značajki i tako izgubiti na vjerodostojnosti. Nastojat ćemo raznim metodama za odabir značajki odabrati one najutjecajnije tako da model ostane precizan, ali i postane efikasniji. U priloženoj analizi podataka već smo proveli nekoliko takvih metoda i primijetili zanimljive uzorke koje valja dalje istražiti. Skup podataka kojim se bavimo već je podjeljen na testni i trening skup, no odlučili smo ih spojiti, provesti analizu i već prije spomenute transformacije (brisanje nedostajućih vrijednosti, odbacivanje jednog od para koreliranih značajki, encodanje kategoričnih varijabli) na čitavom skupu te ih onda pomoću train test splita podijeliti na trening i test skupove. Planiramo koristiti nekoliko načina za evaluaciju modela, a među njima i roc\_auc metriku koja bi trebala dobro funckionirati na relativno balansiranom skupu podataka po pitanju mete.
 
+\newline
 \section{Očekivani rezultati predloženog projekta}
 Teško je reći koja su realna očekivanja projekta, budući da se radi, kako smo već rekli, o relativno novom skupu podataka. Na temelju nekoliko već provedenih istraživanja, nadamo se da ćemo uspjeti konstruirati model točnosti barem 90 posto na testnom skupu podataka.
 
