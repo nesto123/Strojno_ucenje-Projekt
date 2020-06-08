@@ -1,0 +1,155 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8x]{inputenc}
+\usepackage{hyperref}
+\usepackage{fontawesome}
+\usepackage{graphicx}
+\usepackage[croatian]{babel}
+
+% ------------------------------------------------------------------------------
+% Use the beautiful metropolis beamer template
+% ------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+\usepackage{FiraSans} 
+\mode<presentation>
+{
+  \usetheme[progressbar=foot,numbering=fraction,background=light]{metropolis} 
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  %\setbeamertemplate{frame footer}{My custom footer}
+} 
+
+% ------------------------------------------------------------------------------
+% beamer doesn't have texttt defined, but I usually want it anyway
+% ------------------------------------------------------------------------------
+\let\textttorig\texttt
+\renewcommand<>{\texttt}[1]{%
+  \only#2{\textttorig{#1}}%
+}
+
+% ------------------------------------------------------------------------------
+% minted
+% ------------------------------------------------------------------------------
+\usepackage{minted}
+
+
+% ------------------------------------------------------------------------------
+% tcolorbox / tcblisting
+% ------------------------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{codecolor}{HTML}{FFC300}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{most,listingsutf8,minted}
+
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,
+right=1mm,boxsep=1mm,middle=1pt}
+
+\newtcblisting{myr}[1]{colback=codecolor!5,colframe=codecolor!80!black,listing only, 
+minted options={numbers=left, style=tcblatex,fontsize=\tiny,breaklines,autogobble,linenos,numbersep=3mm},
+left=5mm,enhanced,
+title=#1, fonttitle=\bfseries,
+listing engine=minted,minted language=r}
+
+
+% ------------------------------------------------------------------------------
+% Listings
+% ------------------------------------------------------------------------------
+\definecolor{mygreen}{HTML}{37980D}
+\definecolor{myblue}{HTML}{0D089F}
+\definecolor{myred}{HTML}{98290D}
+
+\usepackage{listings}
+
+% the following is optional to configure custom highlighting
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morecomment=[s]{<!--}{-->},
+  morestring=[s]{>}{<},
+  morekeywords={ref,xmlns,version,type,canonicalRef,metr,real,target}% list your attributes here
+}
+
+\lstdefinestyle{myxml}{
+language=XML,
+showspaces=false,
+showtabs=false,
+basicstyle=\ttfamily,
+columns=fullflexible,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+basicstyle=\color{mygreen}\ttfamily,%\footnotesize,
+stringstyle=\color{myred},
+commentstyle=\color{myblue}\upshape,
+keywordstyle=\color{myblue}\bfseries,
+}
+
+
+% ------------------------------------------------------------------------------
+% The Document
+% ------------------------------------------------------------------------------
+\title{Binarna klasifikacija: Predviđanje zadovoljstva putnika}
+\author{Martina Gačina, Nikola Sunara, Fran Vojković, Alen Živković}
+\date{Travanj 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Opis problema}
+
+\begin{frame}[fragile,allowframebreaks]{Opis problema}
+    \begin{itemize}
+    \item Bavimo se problemom predviđanja zadovoljstva putnika avionske kompanije.
+    \item Klasifikacijski problem gdje zadovoljstvo može biti: neutralno ili nezadovoljno te zadovoljno
+    \item Proučavamo  dataset sa Kaggle-a (\href{https://www.kaggle.com/teejmahal20/airline-passenger-satisfaction}{Airline Passenger Satisfaction}).
+    \item Dataset sadrži kategorije i kontinuirane značajke.
+    \item Proveli smo čišćenje podataka od nedostajućih vrijednosti i previše kolinearnih značajki te odbacili smo nekoliko značajki.
+    \end{itemize}
+\framebreak
+\end{frame}
+
+\section{Cilj istraživanja i pregled dosadašnjih istraživanja}
+\begin{frame}[fragile,allowframebreaks]{Cilj istraživanja i pregled dosadašnjih istraživanja}
+    \begin{itemize}
+    \item Radimo na novom datasetu, stoga ima nekoliko dosadašnjih istraživanja.
+    \item Dosad se koristio Random Forest, LightGBM, Catboost, XGBoost, linearna regresija itd.
+    \item Nije provedena adekvatna analiza značajki kao ni njihovo odbacivanje.
+    \item Cilj našeg istraživanja je konstruirati bolji model za klasifikaciju zadovoljstva danog putnika sa većom pouzdanošću.
+    \end{itemize}
+\framebreak
+\end{frame}
+
+\section{Plan istraživanja i očekivani rezultati projekta}
+
+\begin{frame}[fragile,allowframebreaks]{Plan istraživanja i očekivani rezultati projekta}
+\begin{itemize}
+    \item Koristit ćemo sljedeće metode nadziranog učenja za naš model:
+        \begin{itemize}
+            \item Random Forest
+            \item Linearnu regresiju
+            \item Naivnog Bayesa
+        \end{itemize}
+    \item Razmišljamo i o dodatnim metodama koje ćemo koristiti po potrebi.
+    \item Planiramo evaluirati naš model na nekoliko načina, npr. pomoću roc auc metrike.
+\end{itemize}
+
+\framebreak
+
+\begin{itemize}
+    \item Očekujemo da ćemo konstruirati bolji model od već postojećih za naš dataset 
+    \item Nadamo se da će točnost našeg modela biti barem 90 \% 
+\end{itemize}
+\framebreak
+\end{frame}
+
+
+\begin{frame}[standout]
+    Hvala na pažnji ~\alert{\faSmileO}~
+\end{frame}
+
+\end{document}
